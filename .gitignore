@@ -4,3 +4,5 @@
 /.idea/libraries
 .DS_Store
 /build
+*.name
+.idea/artifacts/DomoShades_Client_war.xml
