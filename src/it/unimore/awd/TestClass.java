@@ -22,6 +22,29 @@ public class TestClass {
 
         */
 
-        /**  */
+        /** Home usage example
+
+         // PUT
+        System.out.println(domoWrapper.putHome("brosds@gmail.com","Casa Mantova","Mantova",46031,"San Biagio","Via G. Verdi, 6"));
+
+         // GET
+        List<Home> hl = domoWrapper.getHomeList("brosds@gmail.com");
+        if(hl==null)
+            System.out.println("No Home retrieved");
+        else
+            System.out.println(hl.size());
+
+         //DELETE
+        hl = domoWrapper.deleteHome("brosds@gmail.com", "5668600916475904");
+
+        if(hl==null)
+            System.out.println("Empty home list");
+        else
+            System.out.println(hl.size());
+         */
+
+
+
+
     }
 }
