@@ -1,6 +1,8 @@
 package it.unimore.awd;
 
 import Classes.User;
+import com.google.gson.Gson;
+import org.restlet.data.MediaType;
 import org.restlet.resource.ClientResource;
 
 import java.io.IOException;
@@ -15,31 +17,37 @@ public class DomoWrapper {
     }
 
     /** TODO: Change return types **/
-    public void getUser(String email){
+    public User getUser(String email) throws IOException {
         this.scope="/user?email="+email;
-        try {
-            new ClientResource(uri+scope).get().write(System.out);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.get(MediaType.APPLICATION_JSON).getText();
+        if(returnString==null)
+            return null;
+        Gson gson = new Gson();
+        User user = gson.fromJson(returnString,User.class);
+        return user;
     }
 
-    public void putUser(String email, String first_name, String last_name, String profile_pic){
+    public User putUser(String email, String first_name, String last_name, String profile_pic) throws IOException {
         this.scope="/user?email="+email+"&first_name="+first_name+"&last_name="+last_name+"&profile_pic="+profile_pic;
-        try {
-            new ClientResource(uri+scope).put(User.class).write(System.out);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.put(User.class).getText();
+        if(returnString==null)
+            return null;
+        Gson gson = new Gson();
+        User user = gson.fromJson(returnString,User.class);
+        return user;
     }
 
-    public void deleteUser(String email){
+    public User deleteUser(String email) throws IOException {
         this.scope="/user?email="+email;
-        try {
-            new ClientResource(uri+scope).delete().write(System.out);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.delete().getText();
+        if(returnString==null)
+            return null;
+        Gson gson = new Gson();
+        User user = gson.fromJson(returnString,User.class);
+        return user;
     }
 
 }

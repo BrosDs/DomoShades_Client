@@ -1,5 +1,8 @@
 package Classes;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class User{
 
     String email;
@@ -49,5 +52,11 @@ public class User{
 
     public void setProfile_pic(String profile_pic) {
         this.profile_pic = profile_pic;
+    }
+
+    @Override
+    public String toString(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(this);
     }
 }
