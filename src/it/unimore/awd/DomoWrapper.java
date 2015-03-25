@@ -170,7 +170,6 @@ public class DomoWrapper {
         return gson.fromJson(returnString,token.getType());
     }
 
-
     public Window putWindow(String owner, String home, String id, String room_id, String window_id) throws IOException {
         this.scope=String.format("/window?owner=%s&home=%s&id=%s&room_id=%s&window_id=%s", owner,home,id,room_id,window_id);
         ClientResource cr = new ClientResource(uri+scope);
@@ -191,4 +190,8 @@ public class DomoWrapper {
         TypeToken<List<Window>> token = new TypeToken<List<Window>>(){};
         return gson.fromJson(returnString,token.getType());
     }
+
+    /** TODO: Implement Rules PUT + DELETE
+     *                  Custom PUT + DELETE
+     *       **/
 }

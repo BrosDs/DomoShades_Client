@@ -20,6 +20,24 @@ public class Rules {
         this.closedPercentage = closedPercentage;
     }
 
+    public Rules(String name, Integer priority, String startTime, String endTime, Integer closedPercentage) {
+        super();
+        this.name = name;
+        this.priority = priority;
+        this.startTime=new Time(startTime);
+        this.endTime=new Time(endTime);
+        this.closedPercentage = closedPercentage;
+    }
+
+    public Rules(String name, String priority, String startTime, String endTime, String closedPercentage) {
+        super();
+        this.name = name;
+        this.priority = Integer.parseInt(priority);
+        this.startTime=new Time(startTime);
+        this.endTime=new Time(endTime);
+        this.closedPercentage = Integer.parseInt(closedPercentage);
+    }
+
     public String getName() {
         return name;
     }
@@ -59,4 +77,23 @@ public class Rules {
     public void setClosedPercentage(Integer closedPercentage) {
         this.closedPercentage = closedPercentage;
     }
+
+    public boolean equals(Rules r){
+        if(this.name.equals(r.name) &&
+                this.priority.equals(r.priority) &&
+                this.closedPercentage.equals(r.closedPercentage) &&
+                this.startTime.getHour().equals(r.startTime.getHour()) &&
+                this.startTime.getMinutes().equals(r.startTime.getMinutes()) &&
+                this.endTime.getHour().equals(r.endTime.getHour()) &&
+                this.endTime.getMinutes().equals(r.endTime.getMinutes())){
+            return true;
+        }
+        return false;
+    }
+
+    public int hashCode(){
+        return this.name.hashCode();
+    }
+
+
 }
