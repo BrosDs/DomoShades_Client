@@ -14,10 +14,9 @@ public class TestClass {
         String room_id;
         String window_id;
 
-        /** Cleanup iniziale*/ /**
-        System.out.println(domoWrapper.deleteUser("lukegalli@gmail.com"));
-        System.out.println(domoWrapper.deleteUser("brosds@gmail.com"));
-        */
+        /** Cleanup iniziale*/
+        //domoWrapper.deleteUser("brosds@gmail.com");
+
 
         /** User */
         System.out.println(domoWrapper.putUser("brosds@gmail.com","Dario","Stabili","http://dummy.pic/ture"));
@@ -32,15 +31,16 @@ public class TestClass {
         System.out.println(domoWrapper.putHome(owner,"Casa Mantova","Mantova",46031,"San Biagio","Via G. Verdi, 6"));
         System.out.println(domoWrapper.putHome(owner,"Casa Modena","Modena",42100,"Modena","Strada Vignolese, 925"));
 
+
         List<Home> hl = domoWrapper.getHomesByUser("brosds@gmail.com");
         if(hl==null)
             System.out.println("No Home retrieved");
         else
             for(Home h : hl){
-                System.out.println(h);
+                System.out.println(h.toString());
             }
 
-        home = hl.get(hl.size()-1).getId().toString();
+        home = hl.get((hl != null ? hl.size() : 0) -1).getId().toString();
         hl = domoWrapper.deleteHome(owner, home);
 
         home = hl.get(0).getId().toString();
@@ -56,7 +56,7 @@ public class TestClass {
             for(Floor f : lf)
                 System.out.println(f);
 
-        id = lf.get(lf.size()-1).getId().toString();
+        id = lf.get((lf != null ? lf.size() : 0) -1).getId().toString();
         lf = domoWrapper.deleteFloor(owner,home,id);
 
         id = lf.get(0).getId().toString();
@@ -103,6 +103,7 @@ public class TestClass {
         System.out.println(domoWrapper.deleteRule(owner,home,id,room_id,window_id,"Prova Regola 2",4,"12:30","14:30",85));
         System.out.println(domoWrapper.deleteRule(owner,home,id,room_id,window_id,"Prova Regola 3",6,"14:30","16:30",90));
         System.out.println(domoWrapper.deleteRule(owner,home,id,room_id,window_id,"Prova Regola 4",8,"16:30","18:30",95));
+
 
 
     }

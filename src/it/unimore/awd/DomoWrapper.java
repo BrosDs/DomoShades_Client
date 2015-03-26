@@ -33,7 +33,7 @@ public class DomoWrapper {
     }
 
     public User putUser(String email, String first_name, String last_name, String profile_pic) throws IOException {
-        this.scope="/user?email="+email+"&first_name="+first_name+"&last_name="+last_name+"&profile_pic="+profile_pic;
+        this.scope=String.format("/user?email=%s&first_name=%s&last_name=%s&profile_pic=%s",email,first_name,last_name,profile_pic);
         ClientResource cr = new ClientResource(uri+scope);
         String returnString = cr.put(User.class).getText();
         if(returnString==null)
@@ -192,9 +192,7 @@ public class DomoWrapper {
         return gson.fromJson(returnString,token.getType());
     }
 
-    /** TODO: Implement Rules PUT + DELETE
-     *                  Custom PUT + DELETE
-     *       **/
+    /** Rules Functions **/
 
     public Window putRule(String owner, String home, String id, String room_id, String window_id, String rule_name, Integer rule_priority, String rule_start, String rule_end, Integer rule_closed) throws IOException{
         this.scope=String.format("/rule?owner=%s&home=%s&id=%s&room_id=%s&window_id=%s&rule_name=%s&rule_priority=%s&rule_start=%s&rule_end=%s&rule_closed=%s",owner,home,id,room_id,window_id,rule_name,rule_priority.toString(),rule_start,rule_end,rule_closed.toString());
@@ -218,6 +216,12 @@ public class DomoWrapper {
         TypeToken<Window> token = new TypeToken<Window>(){};
         return gson.fromJson(returnString,token.getType());
     }
+
+    /** SpecialRules Functions **/
+
+
+
+
 
 
 }
