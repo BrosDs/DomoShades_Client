@@ -15,7 +15,8 @@ public class DomoWrapper {
     private String scope;
 
     public DomoWrapper(){
-        this.uri="http://domoshades-apis.appspot.com/api";
+        //this.uri="http://domoshades-apis.appspot.com/api";
+        this.uri="http://localhost:8080/api";
         this.scope="";
     }
 
@@ -194,4 +195,29 @@ public class DomoWrapper {
     /** TODO: Implement Rules PUT + DELETE
      *                  Custom PUT + DELETE
      *       **/
+
+    public Window putRule(String owner, String home, String id, String room_id, String window_id, String rule_name, Integer rule_priority, String rule_start, String rule_end, Integer rule_closed) throws IOException{
+        this.scope=String.format("/rule?owner=%s&home=%s&id=%s&room_id=%s&window_id=%s&rule_name=%s&rule_priority=%s&rule_start=%s&rule_end=%s&rule_closed=%s",owner,home,id,room_id,window_id,rule_name,rule_priority.toString(),rule_start,rule_end,rule_closed.toString());
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.put(Rules.class).getText();
+        if(returnString.equals("[]"))
+            return null;
+        Gson gson = new Gson();
+        TypeToken<Window> token = new TypeToken<Window>(){};
+        return gson.fromJson(returnString,token.getType());
+    }
+
+
+    public Window deleteRule(String owner, String home, String id, String room_id, String window_id, String rule_name, Integer rule_priority, String rule_start, String rule_end, Integer rule_closed) throws IOException{
+        this.scope=String.format("/rule?owner=%s&home=%s&id=%s&room_id=%s&window_id=%s&rule_name=%s&rule_priority=%s&rule_start=%s&rule_end=%s&rule_closed=%s",owner,home,id,room_id,window_id,rule_name,rule_priority.toString(),rule_start,rule_end,rule_closed.toString());
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.delete().getText();
+        if(returnString.equals("[]"))
+            return null;
+        Gson gson = new Gson();
+        TypeToken<Window> token = new TypeToken<Window>(){};
+        return gson.fromJson(returnString,token.getType());
+    }
+
+
 }
