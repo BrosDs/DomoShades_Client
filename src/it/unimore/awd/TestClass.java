@@ -14,10 +14,6 @@ public class TestClass {
         String room_id;
         String window_id;
 
-        /** Cleanup iniziale*/
-        //domoWrapper.deleteUser("brosds@gmail.com");
-
-
         /** User */
         System.out.println(domoWrapper.putUser("brosds@gmail.com","Dario","Stabili","http://dummy.pic/ture"));
         System.out.println(domoWrapper.putUser("lukegalli@gmail.com","Luca","Gallinari","http://dummy.pic/ture"));
@@ -61,6 +57,7 @@ public class TestClass {
 
         id = lf.get(0).getId().toString();
 
+        /** Room */
         System.out.println(domoWrapper.putRoom(owner,home,id,"1","Bagno"));
         System.out.println(domoWrapper.putRoom(owner,home,id,"2","Cucina"));
         System.out.println(domoWrapper.putRoom(owner,home,id,"3","Sala"));
@@ -75,7 +72,7 @@ public class TestClass {
         lr = domoWrapper.deleteRoom(owner,home,id,room_id);
         room_id = lr.get(0).getRoomNum().toString();
 
-
+        /** Window */
         System.out.println(domoWrapper.putWindow(owner,home,id,room_id,"1"));
         System.out.println(domoWrapper.putWindow(owner,home,id,room_id,"2"));
         System.out.println(domoWrapper.putWindow(owner,home,id,room_id,"3"));
@@ -92,6 +89,7 @@ public class TestClass {
         window_id = lw.get(0).getWindowId().toString();
 
 
+        /** Rules */
         System.out.println(domoWrapper.putRule(owner,home,id,room_id,window_id,"Prova Regola 1",2,"10:30","12:30",80));
         System.out.println(domoWrapper.putRule(owner,home,id,room_id,window_id,"Prova Regola 2",4,"12:30","14:30",85));
         System.out.println(domoWrapper.putRule(owner,home,id,room_id,window_id,"Prova Regola 3",6,"14:30","16:30",90));
@@ -103,6 +101,9 @@ public class TestClass {
         System.out.println(domoWrapper.deleteRule(owner,home,id,room_id,window_id,"Prova Regola 2",4,"12:30","14:30",85));
         System.out.println(domoWrapper.deleteRule(owner,home,id,room_id,window_id,"Prova Regola 3",6,"14:30","16:30",90));
         System.out.println(domoWrapper.deleteRule(owner,home,id,room_id,window_id,"Prova Regola 4",8,"16:30","18:30",95));
+
+
+        /** Special Rules */
 
 
 

@@ -219,9 +219,117 @@ public class DomoWrapper {
 
     /** SpecialRules Functions **/
 
+    /** CloseScopes */
+    public String closeWindow(String owner, String home, String id, String room_id, String window_id) throws IOException {
+        this.scope=String.format("/custom?owner=%s&home=&s&rule=0&type=3&id=%s&room_id=%s&window_id=%s",owner,home,id,room_id,window_id);
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.put(Rules.class).getText();
+        if(returnString.equals("[]"))
+            return null;
+        return returnString;
+    }
 
+    public String closeRoom(String owner, String home, String id, String room_id) throws IOException {
+        this.scope=String.format("/custom?owner=%s&home=&s&rule=0&type=2&id=%s&room_id=%s",owner,home,id,room_id);
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.put(Rules.class).getText();
+        if(returnString.equals("[]"))
+            return null;
+        return returnString;
+    }
 
+    public String closeFloor(String owner, String home, String id) throws IOException {
+        this.scope=String.format("/custom?owner=%s&home=&s&rule=0&type=1&id=%s",owner,home,id);
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.put(Rules.class).getText();
+        if(returnString.equals("[]"))
+            return null;
+        return returnString;
+    }
 
+    public String closeHome(String owner, String home) throws IOException {
+        this.scope=String.format("/custom?owner=%s&home=&s&rule=0&type=0",owner,home);
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.put(Rules.class).getText();
+        if(returnString.equals("[]"))
+            return null;
+        return returnString;
+    }
+
+    /** OpenScopes */
+    public String openWindow(String owner, String home, String id, String room_id, String window_id) throws IOException {
+        this.scope=String.format("/custom?owner=%s&home=&s&rule=1&type=3&id=%s&room_id=%s&window_id=%s",owner,home,id,room_id,window_id);
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.put(Rules.class).getText();
+        if(returnString.equals("[]"))
+            return null;
+        return returnString;
+    }
+
+    public String openRoom(String owner, String home, String id, String room_id) throws IOException {
+        this.scope=String.format("/custom?owner=%s&home=&s&rule=1&type=2&id=%s&room_id=%s",owner,home,id,room_id);
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.put(Rules.class).getText();
+        if(returnString.equals("[]"))
+            return null;
+        return returnString;
+    }
+
+    public String openFloor(String owner, String home, String id) throws IOException {
+        this.scope=String.format("/custom?owner=%s&home=&s&rule=1&type=1&id=%s",owner,home,id);
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.put(Rules.class).getText();
+        if(returnString.equals("[]"))
+            return null;
+        return returnString;
+    }
+
+    public String openHome(String owner, String home) throws IOException {
+        this.scope=String.format("/custom?owner=%s&home=&s&rule=1&type=0",owner,home);
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.put(Rules.class).getText();
+        if(returnString.equals("[]"))
+            return null;
+        return returnString;
+    }
+
+    /** RemoveScopes */
+
+    public String removeSpecialFromWindow(String owner, String home, String id, String room_id, String window_id) throws IOException {
+        this.scope=String.format("/custom?owner=%s&home=&s&type=3&id=%s&room_id=%s&window_id=%s",owner,home,id,room_id,window_id);
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.delete().getText();
+        if(returnString.equals("[]"))
+            return null;
+        return returnString;
+    }
+
+    public String removeSpecialFromRoom(String owner, String home, String id, String room_id) throws IOException {
+        this.scope=String.format("/custom?owner=%s&home=&s&type=2&id=%s&room_id=%s",owner,home,id,room_id);
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.delete().getText();
+        if(returnString.equals("[]"))
+            return null;
+        return returnString;
+    }
+
+    public String removeSpecialFromFloor(String owner, String home, String id) throws IOException {
+        this.scope=String.format("/custom?owner=%s&home=&s&type=1&id=%s",owner,home,id);
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.delete().getText();
+        if(returnString.equals("[]"))
+            return null;
+        return returnString;
+    }
+
+    public String removeSpecialFromHome(String owner, String home) throws IOException {
+        this.scope=String.format("/custom?owner=%s&home=&s&type=0",owner,home);
+        ClientResource cr = new ClientResource(uri+scope);
+        String returnString = cr.delete().getText();
+        if(returnString.equals("[]"))
+            return null;
+        return returnString;
+    }
 
 
 }
