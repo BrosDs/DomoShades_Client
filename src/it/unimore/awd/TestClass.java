@@ -24,7 +24,7 @@ public class TestClass {
         System.out.println(domoWrapper.deleteUser("lukegalli@gmail.com"));
 
         /** Home */
-        System.out.println(domoWrapper.putHome(owner,"Casa Mantova","Mantova",46031,"San Biagio","Via G. Verdi, 6"));
+        System.out.println(domoWrapper.putHome(owner, "Casa Mantova", "Mantova", 46031, "San Biagio", "Via G. Verdi, 6"));
         System.out.println(domoWrapper.putHome(owner,"Casa Modena","Modena",42100,"Modena","Strada Vignolese, 925"));
 
 
@@ -69,7 +69,7 @@ public class TestClass {
          }
 
         room_id = lr.get(lr.size()-1).getRoomNum().toString();
-        lr = domoWrapper.deleteRoom(owner,home,id,room_id);
+        lr = domoWrapper.deleteRoom(owner, home, id, room_id);
         room_id = lr.get(0).getRoomNum().toString();
 
         /** Window */
@@ -93,7 +93,7 @@ public class TestClass {
         System.out.println(domoWrapper.putRule(owner,home,id,room_id,window_id,"Prova Regola 1",2,"10:30","12:30",80));
         System.out.println(domoWrapper.putRule(owner,home,id,room_id,window_id,"Prova Regola 2",4,"12:30","14:30",85));
         System.out.println(domoWrapper.putRule(owner,home,id,room_id,window_id,"Prova Regola 3",6,"14:30","16:30",90));
-        System.out.println(domoWrapper.putRule(owner,home,id,room_id,window_id,"Prova Regola 4",8,"16:30","18:30",95));
+        System.out.println(domoWrapper.putRule(owner, home, id, room_id, window_id, "Prova Regola 4", 8, "16:30", "18:30", 95));
 
 
 
@@ -105,7 +105,22 @@ public class TestClass {
 
         /** Special Rules */
 
+        //** Windows
+        System.out.println(domoWrapper.closeWindow(owner,home,id,room_id,window_id));
 
+        lw = domoWrapper.getWindowsOfRoom(owner, home, id, room_id);
+        System.out.println(lw.get(0));
+
+        System.out.println(domoWrapper.openWindow(owner, home, id, room_id, window_id));
+
+        lw = domoWrapper.getWindowsOfRoom(owner, home, id, room_id);
+        System.out.println(lw.get(0));
+
+        System.out.println(domoWrapper.removeSpecialFromWindow(owner, home, id, room_id, window_id));
+        lw = domoWrapper.getWindowsOfRoom(owner, home, id, room_id);
+        System.out.println(lw.get(0));
+
+        /** Le altre funzioni sono codificate in modo analogo, se questa funziona tutto funziona */
 
     }
 }
