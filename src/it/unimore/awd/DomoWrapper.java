@@ -11,6 +11,7 @@ import java.net.URLEncoder;
 import java.util.List;
 
 public class DomoWrapper {
+    private static final int MAX_LENGHT = 2048;
     private String uri;
     private String scope;
 
@@ -21,7 +22,7 @@ public class DomoWrapper {
     }
 
 
-    /** User Functions **/
+    /** User Functintions **/
     public User getUser(String email) throws IOException {
         this.scope="/user?email="+email;
         ClientResource cr = new ClientResource(uri+scope);
@@ -114,9 +115,26 @@ public class DomoWrapper {
 
     public Floor putFloor(String owner, String home, String id, String type, String canvas) throws IOException {
         this.scope=String.format("/floor?owner=%s&home=%s&id=%s&type=%s&canvas=%s", owner,home,id,type,canvas);
-        ClientResource cr = new ClientResource(uri+scope);
-        System.out.println(uri+scope);
-        String returnString = cr.put(Floor.class).getText();
+
+        String completeUrl = uri+scope;
+
+        String returnString;
+
+        if(completeUrl.length()>=MAX_LENGHT){
+            this.scope=String.format("/floor?owner=%s&home=%s&id=%s&type=%s", owner,home,id,type);
+            ClientResource cr = new ClientResource(uri+scope);
+            System.out.println(uri+scope);
+            returnString = cr.put(canvas).getText();
+        }
+        else{
+            ClientResource cr = new ClientResource(uri+scope);
+            System.out.println(uri+scope);
+
+            returnString = cr.put(Floor.class).getText();
+        }
+
+
+
         if(returnString.equals("[]"))
             return null;
         Gson gson = new Gson();
